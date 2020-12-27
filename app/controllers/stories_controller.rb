@@ -45,7 +45,7 @@ class StoriesController < ApplicationController
 
     def destroy
         story.destroy
-        render json: story
+        render json: story #would rather send a 200 response of success
     end
 
     private
