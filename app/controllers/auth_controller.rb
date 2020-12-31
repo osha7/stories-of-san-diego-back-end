@@ -1,6 +1,20 @@
 class AuthController < ApplicationController
     skip_before_action :require_login, only: [:login, :auto_login]
 
+    def auto_login
+        byebug
+        if session_user
+            render json: session_user
+        else
+            render json: {errors: "No User Logged In"}
+        end
+    end
+
+    def user_is_authorized
+        byebug
+        render json: {message: "You are authorized"}
+    end
+    
     def login
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
@@ -27,6 +41,7 @@ class AuthController < ApplicationController
     end
 
     def user_is_authorized
+        # byebug
         render json: {message: "You are authorized"}
     end
 
