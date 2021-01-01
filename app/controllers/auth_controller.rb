@@ -2,7 +2,7 @@ class AuthController < ApplicationController
     skip_before_action :require_login, only: [:login, :auto_login]
 
     def auto_login
-        byebug
+        # byebug
         if session_user
             render json: session_user
         else
@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     end
 
     def user_is_authorized
-        byebug
+        # byebug
         render json: {message: "You are authorized"}
     end
     
@@ -30,19 +30,6 @@ class AuthController < ApplicationController
                 failure: "Log in failed! Username or password was invalid.  Please try again."
             }
         end
-    end
-
-    def auto_login
-        if session_user
-            render json: session_user
-        else
-            render json: {errors: "No User Logged In"}
-        end
-    end
-
-    def user_is_authorized
-        # byebug
-        render json: {message: "You are authorized"}
     end
 
 end

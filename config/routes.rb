@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post "/login", to: "auth#login"
   get "/auto_login", to: "auth#auto_login"
   get "/user_is_authorized", to: "auth#user_is_authorized"
+  post "/create", to: "stories#create"
   resources :stories
 
   root to: 'application#home'

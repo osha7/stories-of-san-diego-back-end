@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-    skip_before_action :require_login, only: [:index, :show]
+    skip_before_action :require_login, only: [:index, :show, :create]
 
     def index
         stories = Story.all
@@ -19,6 +19,7 @@ class StoriesController < ApplicationController
     end
 
     def create
+        # byebug
         story = Story.create(story_params)
 
         if story.valid?
@@ -52,7 +53,7 @@ class StoriesController < ApplicationController
     private
 
     def story_params
-        params.require(:story).permit(:id, :date, :transcriber, :contributor, :contact_email, :contact_phone, :summary, :story, :image )
+        params.permit(:id, :date, :transcriber, :contributor, :contact_email, :contact_phone, :summary, :story, :image )
     end
 
 end
