@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-    skip_before_action :require_login, only: [:index, :show, :create]
+    skip_before_action :require_login, only: [:index, :show, :create, :image_upload]
 
     def index
         stories = Story.all
@@ -16,6 +16,15 @@ class StoriesController < ApplicationController
     end
 
     def new
+       
+    end
+
+    def image_upload
+        # byebug
+        story = Story.find_by(id: (params["id"]))
+        file_url = Cloudinary::Uploader.upload(params[:image])
+        story.image = file_url["url"]
+        story.save
     end
 
     def create

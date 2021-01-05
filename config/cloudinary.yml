@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: disrdstvg
+  api_key: '624288259964634'
+  api_secret: nuMJlyc6xNzlhlszDn8qFrIPQiE
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: disrdstvg
+  api_key: '624288259964634'
+  api_secret: nuMJlyc6xNzlhlszDn8qFrIPQiE
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: disrdstvg
+  api_key: '624288259964634'
+  api_secret: nuMJlyc6xNzlhlszDn8qFrIPQiE
+  enhance_image_tag: true
+  static_file_support: false

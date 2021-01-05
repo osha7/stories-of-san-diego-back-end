@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   root to: 'application#home'
 
+  put "/image_upload", to: "stories#image_upload"
 
 
 end
