@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   put "/image_upload", to: "stories#image_upload"
 
+  get :search, controller: :main
+
 
 end
