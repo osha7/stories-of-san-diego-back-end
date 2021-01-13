@@ -16,7 +16,8 @@ class AuthController < ApplicationController
     end
     
     def login
-        user = User.find_by(username: params[:username])
+        user = User.find_by(username: params["username"], email: params["email"]).try(:authenticate, params["password"])
+        # byebug
         if user && user.authenticate(params[:password])
             payload = {user_id: user.id}
             token = encode_token(payload)
@@ -27,7 +28,7 @@ class AuthController < ApplicationController
             }
         else
             render json: {
-                failure: "Log in failed! Username or password was invalid.  Please try again."
+                failure: "Log in failed: Username, Email or Password was invalid.  Please try again."
             }
         end
     end
