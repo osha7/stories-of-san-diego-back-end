@@ -1,8 +1,8 @@
 class StoriesController < ApplicationController
-    skip_before_action :require_login, only: [:index, :show, :create, :image_upload]
+    skip_before_action :require_login, only: [:index, :show, :create, :image_upload, :edit, :update]
 
     def index
-        stories = Story.all
+        stories = Story.all.sort_by{ |story| -story[:id]}
         render json: {
             stories: stories
         }
@@ -50,7 +50,7 @@ class StoriesController < ApplicationController
             story.save
             render json: story
         else
-            render json: {error: "Unable to save your edits to this story at this time"}
+            render json: {error: "Unable to save your edits to this story, please try again or contact your Web Master."}
         end
     end
 
