@@ -16,15 +16,20 @@ class StoriesController < ApplicationController
     end
 
     def new
-       
     end
 
     def image_upload
-        # byebug
         story = Story.find_by(id: (params["id"]))
+        # byebug
         file_url = Cloudinary::Uploader.upload(params[:image])
         story.image = file_url["url"]
-        story.save
+        
+        if story.save
+            render json: story
+        else
+            render json: {error: "Unable to save image at this time"}
+        end
+
     end
 
     def create
@@ -55,6 +60,7 @@ class StoriesController < ApplicationController
     end
 
     def destroy
+        # byebug
         story = Story.find_by(id: params[:id])
         story.destroy
         render json: story #would rather send a 200 response of success
