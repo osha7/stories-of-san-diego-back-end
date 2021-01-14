@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-    skip_before_action :require_login, only: [:index, :show, :create, :image_upload, :edit, :update]
+    skip_before_action :require_login, only: [:index, :show, :create, :image_upload, :edit, :update, :destroy]
 
     def index
         stories = Story.all.sort_by{ |story| -story[:id]}
@@ -55,6 +55,7 @@ class StoriesController < ApplicationController
     end
 
     def destroy
+        story = Story.find_by(id: params[:id])
         story.destroy
         render json: story #would rather send a 200 response of success
     end
