@@ -64,6 +64,7 @@ class StoriesController < ApplicationController
         story = Story.find_by(id: params[:id])
         story.destroy
         render json: story #would rather send a 200 response of success
+        # render json: {}, status: 200
     end
 
     private
